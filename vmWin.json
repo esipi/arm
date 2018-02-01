@@ -158,8 +158,7 @@
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "[concat('http://', toLower('WindowsVM1storage'), '.blob.core.windows.net')]"
+                        "enabled": false
                     }
                 }
             }
