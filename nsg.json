@@ -16,19 +16,29 @@
         {
             "name": "[parameters('NSGname')]",
             "location": "[resourceGroup().location]",
-            "type": "Microsoft.Network/NetworkSecurityGroups",
+            "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2017-06-01",
             "properties": {
-                "defaultSecurityRules": {
-                    "name": "AllowVnetInBound",
-                    "properties": {
-                        "description": "Allow inbound traffice from all VMs in VNET",
-                        "protocol": "*"
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "properties": {
+                            "description": "Allow inbound traffice from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "destinationAddressPrefixes": [],
+                            "sourceAddressPrefixes": []
                         }
                     }
-                }
-                    
-            }
+                ]
+        }
+    }
     ],
     "outputs": {}
 }
