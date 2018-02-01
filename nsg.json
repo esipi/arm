@@ -37,30 +37,26 @@
                         }
                     }
                 ],
-                "securityRules":[
+                "securityRules": [
                     {
-                        "name": "Block 443 outbound",
-                        "properties":{
+                        "name": "BlockHttpsOutbound",
+                        "properties": {
                             "description": "Block outbound TCP443",
-                            "access":"Deny",
+                            "access": "Deny",
                             "destinationAddressPrefix": "Internet",
                             "sourceAddressPrefix": "VirtualNetwork",
                             "destinationPortRange": "443",
-                            "protocol":"Tcp",
-                            "destinationAddressPrefixes":[
-                                
-                            ],
-                            "sourceAddressPrefixes":[
-                                
-                            ],
+                            "protocol": "Tcp",
+                            "destinationAddressPrefixes": [],
+                            "sourceAddressPrefixes": [],
                             "priority": 500,
-                            "direction":"Outbound",
+                            "direction": "Outbound",
                             "sourcePortRange": "*"
                         }
                     }
                 ]
+            }
         }
-    }
     ],
     "outputs": {}
 }
