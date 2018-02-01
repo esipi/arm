@@ -1,0 +1,64 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "VnetName": {
+            "type": "string",
+            "maxLength": 10
+        },
+        "my1stDNS": {
+            "type": "string",
+            "defaultValue": "8.8.8.8"
+        },
+        "my2ndDNS": {
+            "type": "string",
+            "defaultValue": "9.9.9.9"
+        }
+    },
+    "variables": {
+        "myAddressSpace": "10.11.20.0/24",
+        "mySubnet1": "10.11.20.0/27",
+        "mySubnet2": "10.11.20.32/27"
+    },
+    "resources": [
+        {
+            "comments": "Test VNET deployment with ARM Template.",
+            "apiVersion": "2017-06-01",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('VnetName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "VN1",
+                "ARM Template Test": "yes"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('myAddressSpace')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Subnet1",
+                        "properties": {
+                            "addressPrefix": "[variables('mySubnet1')]"
+                        }
+                    },
+                    {
+                        "name": "Subnet2",
+                        "properties": {
+                            "addressPrefix": "[variables('mySubnet2')]"
+                        }
+                    }
+                ],
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "[parameters('my1stDNS')]",
+                        "[parameters('my2ndDNS')]"
+                    ]
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
