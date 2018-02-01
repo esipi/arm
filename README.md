@@ -1,3 +1,2 @@
 # arm
-ARM Templates
-simple templates for learning and testing
+simple ARM templates for learning and testing
