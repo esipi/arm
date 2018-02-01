@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "NSGname": {
+            "type": "string",
+            "allowedValues": [
+                "NSG1",
+                "NSG2",
+                "NSG3"
+            ]
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('NSGname')]",
+            "location": "[resourceGroup().location]",
+            "type": "Microsoft.Network/NetworkSecurityGroups",
+            "apiVersion": "2017-06-01",
+            "properties": {
+                "defaultSecurityRules": {
+                    "name": "AllowVnetInBound",
+                    "properties": {
+                        "description": "Allow inbound traffice from all VMs in VNET",
+                        "protocol": "*"
+                        }
+                    }
+                }
+                    
+            }
+    ],
+    "outputs": {}
+}
