@@ -26,24 +26,29 @@
                 "2016-Datacenter-Server-Core-smalldisk",
                 "2016-Datacenter-smalldisk"
             ]
+        },
+        "mystacc": {
+            "type": "string",
+            "defaultValue": "storacc"
         }
     },
     "variables": {},
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[toLower('WindowsVM1storage')]",
-            "apiVersion": "2015-06-15",
+            "name": "[toLower(concat(parameters('mystacc'),'uniqueString(resourceGroup().id'))]",
+            "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "WindowsVM1 Storage Account"
+                "displayName": "[toLower(concat(parameters('mystacc'),'uniqueString(resourceGroup().id'))]"
             },
-            "properties": {
-                "accountType": "Standard_LRS"
-            }
+            "sku":{
+                "name":"Standard_LRS"
+            },
+            "kind":"BlobStorage"
         },
         {
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2017-06-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "WindowsVM1-PublicIP",
             "location": "[resourceGroup().location]",
@@ -135,11 +140,11 @@
                     "imageReference": {
                         "publisher": "MicrosoftWindowsServer",
                         "offer": "WindowsServer",
-                        "sku": "2016-Datacenter-",
+                        "sku": "[parameters('mySKU')]",
                         "version": "latest"
                     },
                     "osDisk": {
-                        "name": "WindowsVM1OSDisk",
+                        "name": "[concat(parameters('myVMName'),'uniqueString(resourceGroup().id','osDisk')]",
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
                     }
