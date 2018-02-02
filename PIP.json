@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "PIPName": {
+            "type": "string",
+            "defaultValue": null
+        },
+        "Allocation": {
+            "type":"string",
+            "allowedValues": [
+                "Dynamic", "Static"
+            ]
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2017-06-01",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('PIPName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[parameters('PIPName')]"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "[parameters('Allocation')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[concat()]",
+                    }
+            }
+        }
+    ],
+    "outputs": {}
+}
