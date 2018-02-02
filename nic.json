@@ -1,17 +1,22 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "myNICname": {
+            "type": "string",
+            "minLength": 3,
+            "metadata": {
+                "description": "Name the network interface"
+            }
+        }
+    },
     "variables": {},
     "resources": [
         {
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2017-11-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "NetworkInterface1",
             "location": "[resourceGroup().location]",
-            "tags": {
-                "displayName": "NetworkInterface1"
-            },
             "dependsOn": [
                 "Microsoft.Network/virtualNetworks/VirtualNetwork1"
             ],
