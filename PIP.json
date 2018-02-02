@@ -7,9 +7,10 @@
             "defaultValue": null
         },
         "Allocation": {
-            "type":"string",
+            "type": "string",
             "allowedValues": [
-                "Dynamic", "Static"
+                "Dynamic",
+                "Static"
             ]
         }
     },
@@ -26,8 +27,8 @@
             "properties": {
                 "publicIPAllocationMethod": "[parameters('Allocation')]",
                 "dnsSettings": {
-                    "domainNameLabel": "[concat()]",
-                    }
+                    "domainNameLabel": "[toLower(concat(parameters('PIPName'),uniquestring(resourcegroup().id)))]"
+                }
             }
         }
     ],
