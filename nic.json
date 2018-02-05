@@ -15,7 +15,7 @@
         {
             "apiVersion": "2017-11-01",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "NetworkInterface1",
+            "name": "[parameters('myNICname')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "Microsoft.Network/virtualNetworks/VirtualNetwork1"
