@@ -71,7 +71,7 @@
         {
             "apiVersion": "2017-06-01",
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('virtualNetworkName')]",
+            "name": "[parameters('virtualNetworkName')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
@@ -81,7 +81,7 @@
                 },
                 "subnets": [
                     {
-                        "name": "[variables('subnetName')]",
+                        "name": "[parameters('subnetName')]",
                         "properties": {
                             "addressPrefix": "[parameters('subnetPrefix')]"
                         }
@@ -95,7 +95,7 @@
             "name": "[variables('nicName')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
             ],
             "properties": {
