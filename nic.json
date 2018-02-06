@@ -33,7 +33,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[concat('Microsoft.Network/', parameters('parentVnet'))]"
+                                "id": "[concat('Network/virtualNetworks', parameters('parentVnet'))]"
                             }
                         }
                     }
