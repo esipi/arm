@@ -8,6 +8,12 @@
             "metadata": {
                 "description": "Name the network interface"
             }
+        },
+        "parentVnet": {
+            "type": "string",
+            "metadata": {
+                "description": "Select the parent Vnet"
+            }
         }
     },
     "variables": {},
@@ -18,7 +24,7 @@
             "name": "[parameters('myNICname')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "Microsoft.Network/virtualNetworks/VirtualNetwork1"
+                "Microsoft.Network/virtualNetworks/[parameters('parentVnet']"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -27,7 +33,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', 'VirtualNetwork1'), '/subnets/${VirtualNetwork1-Subnet}')]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '[parameters(parentVnet)]', '/subnets/${VirtualNetwork1-Subnet}']"
                             }
                         }
                     }
