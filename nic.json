@@ -24,7 +24,7 @@
             "name": "[parameters('myNICname')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "Microsoft.Network/virtualNetworks/[parameters('parentVnet']"
+                "[concat('Network/virtualNetworks/', parameters('parentVnet'))]"
             ],
             "properties": {
                 "ipConfigurations": [

@@ -52,8 +52,7 @@
         "publicIPAddressName": "publicIp1",
         "nicName": "networkInterface1",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
-        "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('subnetName'))]",
-        "apiVersion": "2017-06-01"
+        "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('subnetName'))]"
     },
     "resources": [
         {
