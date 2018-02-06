@@ -19,7 +19,7 @@
     "variables": {},
     "resources": [
         {
-            "apiVersion": "2017-11-01",
+            "apiVersion": "2017-06-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[parameters('myNICname')]",
             "location": "[resourceGroup().location]",
@@ -33,7 +33,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[concat('Microsoft.Network/','[parameters('parentVnet')]')]"
+                                "id": "[concat('Microsoft.Network/', parameters('parentVnet'))]"
                             }
                         }
                     }
